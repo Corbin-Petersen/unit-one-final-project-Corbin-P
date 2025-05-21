@@ -3,7 +3,9 @@ export default function Header() {
 
     return (
         <header>
-            <h1>WishLister</h1>
+            <div id="header-content">
+                <h1>WishLister</h1>
+            </div>
         </header>
     );
 }
