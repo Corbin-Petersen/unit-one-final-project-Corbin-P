@@ -130,9 +130,8 @@ img {
     flex: 1 1 auto;
 }
 
-#new-list-btn {
-    
-}
+/* #new-list-btn {
+} */
 
 .list-block {
     flex-wrap: nowrap;
@@ -155,17 +154,17 @@ img {
     padding: 4px;
 }
 
-.edit-btn {
-}
+/* .edit-btn {
+} */
 
-.link-btn {
-}
+/* .link-btn {
+} */
 
 /* -------- LIST VIEW PAGE -------- */
 
-.listview-header {
+/* .listview-header {
+} */
 
-}
 .list-totals {
     width: 100%;
 }
@@ -186,15 +185,12 @@ img {
 .list-btns {
     justify-content: flex-end;
 }
-.new-item-btn {
-
-}
-.trash-list-btn {
-
-}
-.share-list-btn {
-
-}
+/* .new-item-btn {
+} */
+/* .trash-list-btn {
+} */
+/* .share-list-btn {
+} */
 
 .list-display {
     width: 100%;
@@ -218,9 +214,9 @@ img {
     background-position: 50% 50%;
 }
 
-.item-block-text {
+/* .item-block-text {
+} */
 
-}
 .item-block-text > * {
     margin: 4px;
     padding: 4px;
@@ -229,17 +225,16 @@ img {
 
 /* -------- NEW LIST & NEW ITEM PAGES -------- */
 
-#new-list-header, #new-item-header {
-
-}
+/* #new-list-header, #new-item-header {
+} */
 
 #new-list, #new-item {
     width: 50%;
     min-width: 300px;
 }
-#new-item {
-    
-}
+
+/* #new-item {    
+} */
 
 #list-name, #list-info, #item-name, #item-URL {
     flex: 1 1 auto;
