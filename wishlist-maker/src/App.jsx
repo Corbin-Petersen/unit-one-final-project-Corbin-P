@@ -5,6 +5,7 @@ import Welcome from './components/welcome';
 import Lists from './components/lists';
 import ViewList from './components/ViewList';
 import ViewItem from './components/ViewItem';
+import NewList from './components/NewList';
 
 function App() {
 
@@ -16,7 +17,8 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="/lists" element={<Lists />} />
           <Route path="/lists/viewlist" element={<ViewList />} />
-          <Route path="/lists/viewitem" element={<ViewItem />} />
+          <Route path="/item" element={<ViewItem />} />
+          <Route path="/lists/new" element={<NewList />} />
         </Routes>
       </Router>
     </>
