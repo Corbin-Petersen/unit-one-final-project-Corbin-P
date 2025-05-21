@@ -21,50 +21,50 @@ export default function ViewList() {
                     <button className="share-list-btn">share list</button>
                 </div>
                 <div className="list-display row">
-                    <div className="item-block" id="item-1">
-                        <img src="/src/assets/default-img.png" className="img-med" />
+                    <div className="item-block col" id="item-1">
+                        <div className="item-block-img" style={{backgroundImage: `url("/src/assets/default-img.png")`}}></div>
                         <div className="item-block-text">
                             <h4>Item Name</h4>
                             <p>$00.00</p>
                         </div>
                     </div>
-                    <div className="item-block" id="item-2">
-                        <img src="/src/assets/default-img.png" className="img-med" />
+                    <div className="item-block col" id="item-2">
+                        <div className="item-block-img" style={{backgroundImage: `url("/src/assets/default-img.png")`}}></div>
                         <div className="item-block-text">
                             <h4>Item Name</h4>
                             <p>$00.00</p>
                         </div>
                     </div>
-                    <div className="item-block" id="item-3">
-                        <img src="/src/assets/default-img.png" className="img-med" />
+                    <div className="item-block col" id="item-3">
+                        <div className="item-block-img" style={{backgroundImage: `url("/src/assets/default-img.png")`}}></div>
                         <div className="item-block-text">
                             <h4>Item Name</h4>
                             <p>$00.00</p>
                         </div>
                     </div>
-                    <div className="item-block" id="item-4">
-                        <img src="/src/assets/default-img.png" className="img-med" />
+                    <div className="item-block col" id="item-4">
+                        <div className="item-block-img" style={{backgroundImage: `url("/src/assets/default-img.png")`}}></div>
                         <div className="item-block-text">
                             <h4>Item Name</h4>
                             <p>$00.00</p>
                         </div>
                     </div>
-                    <div className="item-block" id="item-5">
-                        <img src="/src/assets/default-img.png" className="img-med" />
+                    <div className="item-block col" id="item-5">
+                        <div className="item-block-img" style={{backgroundImage: `url("/src/assets/default-img.png")`}}></div>
                         <div className="item-block-text">
                             <h4>Item Name</h4>
                             <p>$00.00</p>
                         </div>
                     </div>
-                    <div className="item-block" id="item-6">
-                        <img src="/src/assets/default-img.png" className="img-med" />
+                    <div className="item-block col" id="item-6">
+                        <div className="item-block-img" style={{backgroundImage: `url("/src/assets/default-img.png")`}}></div>
                         <div className="item-block-text">
                             <h4>Item Name</h4>
                             <p>$00.00</p>
                         </div>
                     </div>
-                    <div className="item-block" id="item-7">
-                        <img src="/src/assets/default-img.png" className="img-med" />
+                    <div className="item-block col" id="item-7">
+                        <div className="item-block-img" style={{backgroundImage: `url("/src/assets/default-img.png")`}}></div>
                         <div className="item-block-text">
                             <h4>Item Name</h4>
                             <p>$00.00</p>

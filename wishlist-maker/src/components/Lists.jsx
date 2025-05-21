@@ -16,7 +16,7 @@ export default function Lists() {
                 </div>
                 <div className="list-block row" id="list-1">
                     <img src="/src/assets/default-img.png" className="img-small" />
-                    <div className="list-block-text">
+                    <div className="list-block-text grow">
                         <h4>List Name</h4>
                         <p>## Items</p>
                     </div>
@@ -25,7 +25,7 @@ export default function Lists() {
                 </div>
                 <div className="list-block row" id="list-2">
                     <img src="/src/assets/default-img.png" className="img-small" />
-                    <div className="list-block-text">
+                    <div className="list-block-text grow">
                         <h4>List Name</h4>
                         <p>## Items</p>
                     </div>
