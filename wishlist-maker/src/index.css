@@ -59,27 +59,19 @@ footer {
 }
 
 button {
-    border: 0;
+    border: 1px solid transparent;
     border-radius: 4px;
     font-size: medium;
     padding: 0px 10px;
     /* margin: 5px 10px 5px 0; */
     height: 30px;
+    background-color: #e7e7e7;
+    transition: all 250ms;
 }
-
-form {
-    margin-bottom: 20px;
-}
-
-input, textarea {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-}
-
-label {
-    display: flex;
-    flex-direction: column;
+button:hover {
+    cursor: pointer;
+    border-color: #e7e7e7;
+    background-color: white;
 }
 
 img {
@@ -97,6 +89,62 @@ img {
 .hide {
     display: none;
 } 
+
+
+/* ---- modal styling ---- */
+
+.modal-bg {
+    display: none;
+    position: fixed; 
+    left: 0;
+    top: 0;
+    width: 100vw; 
+    height: 100vw; 
+    background-color: rgba(0,0,0,0.4); 
+    transition: display 1s;
+}
+.modal {
+    margin: 20vw auto; 
+    border: 1px solid transparent;
+    border-radius: 6px;
+    width: 300px;
+    padding: 10px;
+    background-color: #e7e7e7;
+    color: rgb(179, 0, 0);
+    font-weight: bolder;
+    text-align: center;
+}
+.modal p {
+    padding: 30px;
+
+}
+.close {
+    color: #838383;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover {
+    color: black;
+    text-decoration: none;
+}
+
+/* ---- form styling ---- */
+
+form {
+    margin-bottom: 20px;
+}    
+
+input, textarea {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+}    
+
+label {
+    display: flex;
+    flex-direction: column;
+}    
 
 
 /* -------- WELCOME & LOGIN PAGE -------- */
@@ -145,6 +193,12 @@ img {
     border-style: solid hidden;
     border-color: lightgray;
     align-items: center;
+    transition: all 250ms;
+}
+
+.list-link {
+    text-decoration: none;
+    color: inherit;
 }
 
 .list-block-text {
@@ -158,8 +212,9 @@ img {
     padding: 4px;
 }
 
-/* .edit-btn {
-} */
+.edit-btn {
+    margin-right: 20px;
+}
 
 /* .link-btn {
 } */

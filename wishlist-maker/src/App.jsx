@@ -17,9 +17,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/lists" element={<Lists />} />
+          <Route path="/:userID/lists" element={<Lists />} />
           <Route path="/lists/new" element={<NewList />} />
-          <Route path="/lists/viewlist" element={<ViewList />} />
+          <Route path="/:userID/lists/:listID" element={<ViewList />} />
           <Route path="/item" element={<ViewItem />} />
           <Route path="/item/new" element={<NewItem />} />
         </Routes>
