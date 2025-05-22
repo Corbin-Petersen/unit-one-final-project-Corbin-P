@@ -1,4 +1,4 @@
-const userList = [
+export const userList = [
     {
         userID: "2025Corbin",
         userName: "corbin@petersen.com",

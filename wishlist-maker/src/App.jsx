@@ -8,7 +8,6 @@ import ViewItem from './components/ViewItem';
 import NewList from './components/NewList';
 import NewItem from './components/NewItem';
 import Footer from './components/Footer';
-import { userList } from './shared/userData.js';
 
 function App() {
 
