@@ -13,6 +13,7 @@ export default function ViewItem() {
                 <h3>$00.00</h3>
             </div>
             <div id="item-btns" className="row">
+                <p className="needed hide"># NEEDED: <span className="num-needed">1</span></p>
                 <button id="edit-item" >edit</button>
                 <button id="go-to-item" >link</button>
             </div>

@@ -94,6 +94,10 @@ img {
     object-fit: cover;
 }
 
+.hide {
+    display: none;
+} 
+
 
 /* -------- WELCOME & LOGIN PAGE -------- */
 
@@ -162,9 +166,6 @@ img {
 
 /* -------- LIST VIEW PAGE -------- */
 
-/* .listview-header {
-} */
-
 .list-totals {
     width: 100%;
 }
@@ -212,6 +213,7 @@ img {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 50%;
+    align-content: end;
 }
 
 /* .item-block-text {
@@ -221,6 +223,19 @@ img {
     margin: 4px;
     padding: 4px;
 }
+
+.list-need {
+    text-align: right;
+    align-content: center;
+    padding: 5px 10px;
+    margin: 0;
+    background-image: linear-gradient(to right, transparent, transparent, rgb(206, 206, 253));
+}
+
+.list-need-num {
+    font-weight: bolder;
+}
+
 
 
 /* -------- NEW LIST & NEW ITEM PAGES -------- */
@@ -259,4 +274,15 @@ img {
 #item-btns {
     width: 100%;
     justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.needed {
+    flex: 1 1 auto;
+    text-align: left;
+    align-content: center;
+}
+
+.num-needed {
+    font-weight: bolder;
 }
