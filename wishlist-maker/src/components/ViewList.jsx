@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router";
+import { userList } from '../shared/userData';
 
 export default function ViewList() {
     const { user } = useParams();

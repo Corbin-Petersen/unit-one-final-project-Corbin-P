@@ -1,5 +1,5 @@
-import { useState } from "react"
-
+import { useState } from "react";
+import { userList } from '../shared/userData';
 
 export default function Welcome() {
     const [ user, setUser ] = useState(null);
