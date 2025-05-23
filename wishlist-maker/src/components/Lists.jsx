@@ -5,12 +5,6 @@ import data from '../data/userData.json';
 export default function Lists() {
     const { userID } = useParams();
     const userInfo = data.find(user => user.userID == userID);
-    // const [ userInfo, setUserInfo ] = useState({});
-    
-
-    // useEffect(() => {
-    //     setUserInfo(data.find(user => user.userID == userID))
-    // }, []);
 
     console.log(Array.isArray(userInfo.lists));
 
@@ -26,7 +20,7 @@ export default function Lists() {
                 </div>
                 {userInfo.lists.map(list => (
                     <div key={list.listID} className="list-block row" id={list.listID}>
-                        <Link to={`${userID}/lists/${list.listID}`} className="list-link row grow">
+                        <Link to={`${list.listID}`} className="no-decorate row grow">
                             <img src={list.listItems[0].itemImg} className="img-small" />
                             <div className="list-block-text grow">
                                 <h4>{list.listName}</h4>

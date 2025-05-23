@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import data from '../data/userData.json';
 
 const userInfo = {};
@@ -8,7 +8,6 @@ export default function Welcome() {
     
     // set up states & variables
     const [ isLoggedIn, setLogin ] = useState(false);
-    const [ invalidLogin, setInvalid ] = useState('');
 
     const modalDiv = useRef(0);
     const navigate = useNavigate();
@@ -23,11 +22,9 @@ export default function Welcome() {
         const loginUser = e.target.user.value;
         const loginPass = e.target.password.value;
 
-        // validate submission & set user and login
+        // validate submission, show error (if applicable), nav to Lists component
         for (let users of userData) {
             if (loginUser == users.userName && loginPass == users.pass) {
-                // Object.assign(userInfo, users);
-                // console.log(userInfo);
                 setLogin(true);
                 setLogin && navigate(`${users.userID}/lists`);
             } else {

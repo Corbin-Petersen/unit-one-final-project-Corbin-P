@@ -20,7 +20,7 @@ function App() {
           <Route path="/:userID/lists" element={<Lists />} />
           <Route path="/lists/new" element={<NewList />} />
           <Route path="/:userID/lists/:listID" element={<ViewList />} />
-          <Route path="/item" element={<ViewItem />} />
+          <Route path=":userID/lists/:listID/:itemID" element={<ViewItem />} />
           <Route path="/item/new" element={<NewItem />} />
         </Routes>
       </Router>
