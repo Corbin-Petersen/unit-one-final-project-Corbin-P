@@ -95,9 +95,6 @@ img {
     object-fit: cover;
 }
 
-.hide {
-    display: none;
-}
 
 .no-decorate {
     text-decoration: none;
@@ -109,13 +106,14 @@ img {
 
 .modal-bg {
     display: none;
+    opacity: 1;
     position: fixed; 
     left: 0;
     top: 0;
     width: 100vw; 
     height: 100vw; 
     background-color: rgba(0,0,0,0.4); 
-    transition: display 1s;
+    transition: opacity 250ms;
 }
 .modal {
     margin: 20vw auto; 
@@ -127,6 +125,12 @@ img {
     color: rgb(179, 0, 0);
     font-weight: bolder;
     text-align: center;
+}
+.show {
+    display: block;
+}
+.fade {
+    opacity: 1;
 }
 .modal p {
     padding: 30px;

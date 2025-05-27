@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import data from '../data/userData.json';
 
-export default function Lists() {
+export default function Lists( {data} ) {
     const { userID } = useParams();
     const userInfo = data.find(user => user.userID == userID);
 

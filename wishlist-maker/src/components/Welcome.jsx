@@ -1,17 +1,30 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import data from '../data/userData.json';
 
 const userInfo = {};
 
-export default function Welcome() {
+export default function Welcome( props ) {
     
     // set up states & variables
-    const [ isLoggedIn, setLogin ] = useState(false);
-
+    const { isLoggedIn, setLogin, data } = props;
     const modalDiv = useRef(0);
     const navigate = useNavigate();
-    const userData = data;
+    // const userData = data;
+    
+    // functions to handle modal fade-in and fade-out
+    const openModal = () => {
+        modalDiv.current.style.display = "block";
+        setTimeout(() => {
+            modalDiv.current.style.opacity = "1";
+        }, 1);
+    }
+    
+    const closeModal = () => {
+        modalDiv.current.style.opacity = "0";
+        setTimeout(() => {
+            modalDiv.current.style.display = "none";
+        }, 250);
+    }
 
     // function to handle login and set user and isLoggedIn
     const handleLogin = (e) => {
@@ -21,18 +34,17 @@ export default function Welcome() {
         // get submission
         const loginUser = e.target.user.value;
         const loginPass = e.target.password.value;
-
+        
         // validate submission, show error (if applicable), nav to Lists component
-        for (let users of userData) {
+        for (let users of data) {
             if (loginUser == users.userName && loginPass == users.pass) {
                 setLogin(true);
-                setLogin && navigate(`${users.userID}/lists`);
-            } else {
-                modalDiv.current.style.display = "block";
+                isLoggedIn ? navigate(`${users.userID}/lists`) : openModal();
             }
         }
         
     }
+    
 
     return (
         <div className="component col">
@@ -52,7 +64,7 @@ export default function Welcome() {
             </form>
             <div id="modal-error" className="modal-bg" ref={modalDiv}>
                 <div className="modal">
-                    <button className="close" onClick={() => modalDiv.current.style.display = "none"}>&times;</button>
+                    <button className="close" onClick={closeModal}>&times;</button>
                     <p>Oops! Incorrect Username or Password. <br/>
                     Please try again.</p>
                 </div>

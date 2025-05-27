@@ -1,10 +1,10 @@
 import { Link, useParams } from "react-router";
-import data from '../data/userData.json';
 
-export default function ViewItem() {
+export default function ViewItem( props ) {
     
     // set state and variables
     const { userID, listID, itemID } = useParams();
+    const { data } = props;
     const userInfo = data.find(user => user.userID == userID);
     const userList = userInfo.lists.find(list => list.listID == listID);
     const userItem = userList.listItems.find(item => item.itemID == itemID);

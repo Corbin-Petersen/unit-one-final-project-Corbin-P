@@ -1,10 +1,10 @@
-import { Link, useParams } from "react-router";
-import data from '../data/userData.json';
+import { NavLink, useParams } from "react-router";
 
-export default function ViewList() {
+export default function ViewList( props ) {
     
     // pull in params and set variables
     const { userID, listID } = useParams();
+    const { data } = props;
     const userInfo = data.find(user => user.userID == userID);
     const userList = userInfo.lists.find(list => list.listID == listID);
     const hasSpace = userList.listItems.length % 3 !== 0;
@@ -18,13 +18,7 @@ export default function ViewList() {
             : total += item.itemCost
         ));
         return total.toFixed(2);
-    }
-
-    // function to display item in modal
-    const showItem = () => {
-        
-    }
-    
+    }    
 
     return (
         <div className="component col">
@@ -44,7 +38,7 @@ export default function ViewList() {
                 </div>
                 <div className="list-display row">
                     {userList.listItems.map(item => (
-                        <Link to={`${item.itemID}`} className="item-link no-decorate">
+                        <NavLink to={`${item.itemID}`} key={`${item.itemID}`} className="item-link no-decorate" viewTransition>
                         <div className="item-block col" id="item.itemID">
                             <div className="item-block-img" style={{backgroundImage: `url(${item.itemImg})`}}>
                                 {item.quantity && 
@@ -56,7 +50,7 @@ export default function ViewList() {
                                 <p>${item.itemCost}</p>
                             </div>
                         </div>
-                        </Link>
+                        </NavLink>
                     ))}
                     {hasSpace && 
                         <div className="spacer"></div>
