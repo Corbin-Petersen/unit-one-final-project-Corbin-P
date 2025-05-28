@@ -2,16 +2,17 @@ import React from "react";
 import { Link, useParams } from "react-router";
 import { userList } from '../shared/userData';
 
-export default function NewItem() {
-
+export default function NewItem( props ) {
+    const { closeModal } = props;
 
     return (
-        <div className="component col">
+        <div className="modal make-new">
+            <button className="close" onClick={closeModal}>&times;</button>
             <div id="new-item-header">
-                <h2>Create New List</h2>
+                <h2>Create New Item</h2>
             </div>
             <form name="new-item" id="new-item" className="col">
-                <label>LIST NAME
+                <label>ITEM NAME
                     <input type="text" id="item-name" name="itemName" autoFocus />
                 </label>
                 <label>URL
@@ -28,7 +29,7 @@ export default function NewItem() {
                 <div id="new-image">
                     <img src="/src/assets/default-img.png" className="img-reg" />
                 </div>
-                <button onClick="">SUBMIT</button>
+                <button className="submit-btn" onClick="">SUBMIT</button>
             </form>
         </div>
     );

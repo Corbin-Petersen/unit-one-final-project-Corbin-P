@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ListBlock from "./ListBlock";
 
 export default function Lists( {data} ) {
     const { userID } = useParams();
     const userInfo = data.find(user => user.userID == userID);
-
-    console.log(Array.isArray(userInfo.lists));
 
     return (
         <div className="component col">
@@ -14,8 +14,8 @@ export default function Lists( {data} ) {
             </div>
             <div id="lists-list" className="col">
                 <div id="lists-header" className="row">
-                    <h3>Your Lists</h3>
-                    <button id="new-list-btn">new list</button>
+                    <h3>YOUR LISTS</h3>
+                    <button id="new-list-btn" title="new list"><FontAwesomeIcon icon="fa-solid fa-plus" /></button>
                 </div>
                 {userInfo.lists.map(list => (
                     <div key={list.listID} className="list-block row" id={list.listID}>
@@ -26,8 +26,8 @@ export default function Lists( {data} ) {
                                 <p>{list.listItems.length} Items</p>
                             </div>
                         </Link>
-                        <button className="edit-btn">edit</button>
-                        {/* <button className="link-btn">view</button> */}
+                        <button className="edit-btn" title="edit list"><FontAwesomeIcon icon="fa-solid fa-pen" /></button>
+                        <button className="delete-btn"><FontAwesomeIcon icon="fa-solid fa-trash" /></button>
                     </div>
                 ))}
             </div>

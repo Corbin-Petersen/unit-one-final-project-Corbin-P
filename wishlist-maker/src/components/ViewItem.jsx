@@ -1,4 +1,5 @@
 import { Link, useParams } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function ViewItem( props ) {
     
@@ -21,8 +22,8 @@ export default function ViewItem( props ) {
                 </div>
                 <div id="item-btns" className="row">
                     <p className="needed hide"># NEEDED: <span className="num-needed">1</span></p>
-                    <button id="edit-item" >edit</button>
-                    <button id="go-to-item" >link</button>
+                    <button id="edit-item" title="edit item"><FontAwesomeIcon icon="fa-solid fa-pen" /></button>
+                    <a href={userItem.itemURL} target="_blank"><button id="go-to-item" title="link to item"><FontAwesomeIcon icon="fa-solid fa-eye" /></button></a>
                 </div>
             </div>
         </div>

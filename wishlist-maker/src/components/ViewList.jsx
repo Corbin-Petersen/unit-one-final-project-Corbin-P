@@ -1,10 +1,14 @@
 import { NavLink, useParams } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import NewItem from "./NewItem";
+import { useRef } from "react";
 
 export default function ViewList( props ) {
     
     // pull in params and set variables
     const { userID, listID } = useParams();
     const { data } = props;
+    const newItemModal = useRef(0);
     const userInfo = data.find(user => user.userID == userID);
     const userList = userInfo.lists.find(list => list.listID == listID);
     const hasSpace = userList.listItems.length % 3 !== 0;
@@ -20,6 +24,23 @@ export default function ViewList( props ) {
         return total.toFixed(2);
     }    
 
+        // functions to handle modal fade-in and fade-out
+    const openModal = () => {
+        newItemModal.current.style.display = "flex";
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+            newItemModal.current.style.opacity = "1";
+        }, 1);
+    }
+    const closeModal = () => {
+        newItemModal.current.style.opacity = "0";
+        document.body.style.overflow = "visible";
+        setTimeout(() => {
+            newItemModal.current.style.display = "none";
+        }, 250);
+    }
+
+
     return (
         <div className="component col">
             <div className="listview-header">
@@ -28,9 +49,9 @@ export default function ViewList( props ) {
             </div>
             <div className="listview col">
                 <div className="list-btns row">
-                    <button className="new-item-btn">new item</button>
-                    <button className="trash-list-btn">delete list</button>
-                    <button className="share-list-btn">share list</button>
+                    <button className="new-item-btn" title="add item" onClick={openModal}><FontAwesomeIcon icon="fa-solid fa-plus" /></button>
+                    <button className="trash-list-btn" title="delete list"><FontAwesomeIcon icon="fa-solid fa-trash" /></button>
+                    <button className="share-list-btn" title="share list"><FontAwesomeIcon icon="fa-solid fa-share" /></button>
                 </div>
                 <div className="list-totals row">
                     <span id="item-count">ITEMS: <b>{userList.listItems.length}</b></span>
@@ -56,6 +77,9 @@ export default function ViewList( props ) {
                         <div className="spacer"></div>
                     }
                 </div>
+            </div>
+            <div className="modal-bg" ref={newItemModal}>
+                <NewItem closeModal={closeModal} />
             </div>
         </div>
     );
