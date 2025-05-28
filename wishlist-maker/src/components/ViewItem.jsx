@@ -21,9 +21,11 @@ export default function ViewItem( props ) {
                     <h3>${userItem.itemCost}</h3>
                 </div>
                 <div id="item-btns" className="row">
-                    <p className="needed hide"># NEEDED: <span className="num-needed">1</span></p>
+                    {userItem.quantity &&
+                        <p className="needed"># NEEDED: <span className="num-needed">{userItem.quantity}</span></p>
+                    }
                     <button id="edit-item" title="edit item"><FontAwesomeIcon icon="fa-solid fa-pen" /></button>
-                    <a href={userItem.itemURL} target="_blank"><button id="go-to-item" title="link to item"><FontAwesomeIcon icon="fa-solid fa-eye" /></button></a>
+                    <button id="go-to-item" title="link to item" onClick={() => window.open(userItem.itemURL, '_blank')}><FontAwesomeIcon icon="fa-solid fa-up-right-from-square" /></button>
                 </div>
             </div>
         </div>

@@ -146,6 +146,7 @@ img {
     transition: opacity 250ms;
     align-items: center;
     justify-content: center;
+    cursor: default;
 }
 .modal {
     /* margin: 20vw auto;  */
@@ -160,8 +161,9 @@ img {
     text-align: center;
     justify-content: stretch;
     align-self: center;
+    pointer-events: auto;
 }
-.modal p {
+.modal > p {
     padding: 30px;
 
 }
@@ -170,6 +172,9 @@ img {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    background-color: transparent;
+    aspect-ratio: 1/1;
+    height: auto;
 }
 .close:hover {
     color: black;
@@ -334,11 +339,25 @@ label {
     margin: 10px 0;
 }
 
+.item {
+    width: 30%;
+    min-width: 230px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    transition: all 250ms;
+}
+.item:hover {
+    cursor: pointer;
+    background-color: #f2f2f2;
+}
+
 .item-block {
     width: 100%;
     box-sizing: border-box;
     border-radius: 15px;
-    /* border: 1px solid #f4f4f4; */
     padding: 10px;
     background-color: white;
     transition: all 250ms;
@@ -415,10 +434,16 @@ label {
 
 /* -------- VIEW ITEM PAGE -------- */
 
+.view-item {
+    box-sizing: border-box;
+    color: black;
+    background-color: #f2f2f2;
+}
+
 #item-container {
     width: 100%;
-    margin: 40px;
-    padding: 20px;
+    margin: 0px;
+    padding: 10px 0px;
     background-color: #f2f2f2;
     border-radius: 6px;
 }
@@ -436,13 +461,14 @@ label {
 #item-btns {
     width: 100%;
     justify-content: flex-end;
-    margin-bottom: 30px;
 }
 
 .needed {
     flex: 1 1 auto;
     text-align: left;
     align-content: center;
+    padding: 0;
+    margin: auto 10px;
 }
 
 .num-needed {
