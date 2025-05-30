@@ -1,11 +1,9 @@
-import React, { useRef, useState } from "react";
-import { Link, useParams } from "react-router";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 export default function NewItem( props ) {
     const { data, userInfo, userList, closeModal } = props;
-    const formRef = useRef(null);
     const [ formInfo, setFormInfo ] = useState({
         itemID: "",
         itemName: "",
@@ -47,12 +45,12 @@ export default function NewItem( props ) {
 
 
     return (
-        <div className="modal make-new">
+        <div className="modal make-new col">
             <button className="close square" onClick={closeModal}><i className="fa-solid fa-xmark"></i></button>
             <div id="new-item-header">
                 <h2>Create New Item</h2>
             </div>
-            <form name="new-item" id="new-item" className="col" ref={formRef} method="post" onSubmit={submitNewItem}>
+            <form name="new-item" id="new-item" className="col" method="post" onSubmit={submitNewItem}>
                 <label>ITEM NAME
                     <input type="text" id="item-name" name="itemName" onChange={handleChange} autoFocus required/>
                 </label>

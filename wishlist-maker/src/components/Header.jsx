@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import NavBlock from "./NavBlock";
 
 export default function Header( props ) {
     const { isLoggedIn, setLogin } = props;
@@ -8,13 +9,6 @@ export default function Header( props ) {
             <div id="header-content">
                 <h1>WistLish</h1>
             </div>
-            <nav>
-                {/* { isLoggedIn 
-                    ? <NavLink to="/:userID/lists">My Lists</NavLink>
-                    : <NavLink to="/">Log In</NavLink>
-                } */}
-                
-            </nav>
         </header>
     );
 }

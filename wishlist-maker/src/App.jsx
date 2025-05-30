@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from "react-router";
 import './App.css';
 import Header from './components/Header';
-import Welcome from './components/Welcome';
+import Home from './components/Home';
 import Lists from './components/Lists';
 import ViewList from './components/ViewList';
 import NewList from './components/NewList';
@@ -30,12 +30,18 @@ function App() {
       <Header isLoggedIn={isLoggedIn} setLogin={setLogin} data={data} library={library} />
       <Router>
         <Routes>
-          <Route path="/" element={<Welcome isLoggedIn={isLoggedIn} setLogin={setLogin} data={data} />} />
-          <Route path="/:userID/lists" element={<Lists data={data} />} />
-          <Route path="/lists/new" element={<NewList data={data} />} />
-          <Route path="/:userID/lists/:listID" element={<ViewList data={data} />} />
-          <Route path=":userID/lists/:listID/:itemID" element={<Item data={data} />} />
-          <Route path="/item/new" element={<NewItem />} />
+          <Route path="/" element={<Home isLoggedIn={isLoggedIn} setLogin={setLogin} data={data} />} />
+          <Route path=":userID">
+            <Route path="lists">
+              <Route index element={<Lists data={data} />} />
+              <Route path=":listID">
+                <Route index element={<ViewList data={data} />} />
+                <Route path=":itemID" element={<Item data={data} />} />
+                <Route path="new" element={<NewItem />} />
+              </Route>
+              <Route path="new" element={<NewList data={data} />} />
+            </Route>
+          </Route>
         </Routes>
       </Router>
       <Footer />

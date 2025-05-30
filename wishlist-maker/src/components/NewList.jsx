@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router";
-import { userList } from '../shared/userData';
+import { useNavigate } from "react-router";
 
 export default function NewList( props ) {
     
@@ -24,20 +23,39 @@ export default function NewList( props ) {
         }));
     };
 
+    // submit new list to local storage
+    const submitNewList = (e) => {
+        e.preventDefault();
+
+        // capture index of current user inside data
+        const userIndex = data.findIndex((i) => i.userID === userInfo.userID);
+
+        // add randomly-generated listID to new list
+        formData.listID = `${userInfo.userID}-${Math.floor(Math.random() * 900) + 100}`;
+
+        // add new list to the lists array inside current user
+        data[userIndex].lists.push(formData);
+
+        // push to localStorage
+        localStorage.setItem('fakeData', JSON.stringify(data));
+
+        handleNewList();
+    }
+
     return (
-        <div className="modal make-new">
+        <div className="modal make-new col">
             <button className="close square" onClick={handleNewList}><i className="fa-solid fa-xmark"></i></button>
             <div id="new-list-header">
                 <h2>Create New List</h2>
             </div>
-            <form name="new-list" id="new-list" className="col">
+            <form name="new-list" id="new-list" className="col" method="post" onSubmit={submitNewList}>
                 <label>LIST NAME
                     <input type="text" id="list-name" name="listName" onChange={handleChange} autoFocus required/>
                 </label>
                 <label>DESCRIPTION
                     <textarea id="list-info" name="listDesc" rows="5" onChange={handleChange} required />
                 </label>
-                <button className="submit-btn" onClick="">SUBMIT</button>
+                <button className="submit-btn">SUBMIT</button>
             </form>
         </div>
     );

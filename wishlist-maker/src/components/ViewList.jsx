@@ -14,7 +14,7 @@ export default function ViewList( props ) {
     const [ lastClicked, setLastClicked ] = useState(null);
     const userInfo = data.find(user => user.userID == userID);
     const userList = userInfo.lists.find(list => list.listID == listID);
-    const hasSpace = userList.listItems.length % 3 !== 0;
+    const hasSpace = userList.listItems.length % 3;
     
 
     // function to total cost of all items
@@ -34,13 +34,15 @@ export default function ViewList( props ) {
             document.body.style.overflow = "hidden",
             newItemModal.current.style.display = "flex",
             setTimeout(() => {
-                newItemModal.current.style.opacity = "1";
+                newItemModal.current.style.opacity = "1",
+                newItemModal.current.lastElementChild.style.transform = "translateY(0px)"
             }, 1)
         ) : (
-            newItemModal.current.style.opacity = "0",
             document.body.style.overflow = "visible",
+            newItemModal.current.style.opacity = "0",
+            newItemModal.current.lastElementChild.style.transform = "translateY(-25px)",
             setTimeout(() => {
-                newItemModal.current.style.display = "none";
+                newItemModal.current.style.display = "none"
             }, 250)
         );
         setIsVisible(!isVisible);
@@ -53,16 +55,18 @@ export default function ViewList( props ) {
             clicked.style.pointerEvents = "none",
             item.style.display = "flex",
             setTimeout(() => {
-                item.style.opacity = "1"
+                item.style.opacity = "1",
+                item.lastElementChild.style.transform = "translateY(0px)"
             }, 1),
             setLastClicked(item)
         ) : (
             document.body.style.overflow = "visible",
             clicked.style.pointerEvents = "auto",
             lastClicked.style.opacity = "0",
+            lastClicked.lastElementChild.style.transform = "translateY(-25px)",
             setTimeout(() => {
                 lastClicked.style.display = "none"
-            }, 1),
+            }, 250),
             setLastClicked(null)
         );
         setIsVisible(!isVisible);
@@ -94,16 +98,15 @@ export default function ViewList( props ) {
                             </div>
                             <div className="item-block-text">
                                 <h4>{item.itemName}</h4>
-                                <p>${item.itemCost}</p>
+                                <p className="price">${item.itemCost}</p>
                             </div>
                             <div id={`${item.itemID}-view`} className="modal-bg">
                                 <Item itemName={item.itemName} itemCost={item.itemCost} itemID={item.itemID} itemImg={item.itemImg} itemQuantity={item.quantity} itemURL={item.itemURL} closeItem={handleItemView} />
                             </div>
                         </div>
                     ))}
-                    {hasSpace && 
-                        <div className="spacer"></div>
-                    }
+                    { hasSpace === 2 && <div className="space2"></div> }
+                    { hasSpace === 1 && <div className="space1 grow"></div> }
                 </div>
             </div>
             <div className="modal-bg" ref={newItemModal}>

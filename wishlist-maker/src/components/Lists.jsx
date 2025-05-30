@@ -7,7 +7,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 
 export default function Lists( props ) {
     // pull in params and set variables
-    const { userID } = useParams();
+    const { userID, listID } = useParams();
     const { data } = props;
     const newListRef = useRef(0);
     const userInfo = data.find(user => user.userID == userID);
@@ -19,10 +19,12 @@ export default function Lists( props ) {
             document.body.style.overflow = "hidden",
             newListRef.current.style.display = "flex",
             setTimeout(() => {
-                newListRef.current.style.opacity = "1";
+                newListRef.current.style.opacity = "1",
+                newListRef.current.lastElementChild.style.transform = "translateY(0px)"
             }, 1)
         ) : (
             newListRef.current.style.opacity = "0",
+            newListRef.current.lastElementChild.style.transform = "translateY(-25px)",
             document.body.style.overflow = "visible",
             setTimeout(() => {
                 newListRef.current.style.display = "none";
@@ -44,7 +46,7 @@ export default function Lists( props ) {
                 </div>
                 {userInfo.lists.map(list => (
                     <div key={list.listID} className="list-block row" id={list.listID}>
-                        <Link to={`${list.listID}`} className="no-decorate row grow">
+                        <Link to={list.listID} className="no-decorate row grow" >
                             <img src={list.listItems[0].itemImg} className="img-small" />
                             <div className="list-block-text grow">
                                 <h4>{list.listName}</h4>
