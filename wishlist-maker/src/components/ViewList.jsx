@@ -12,14 +12,10 @@ export default function ViewList( props ) {
     const newItemModal = useRef(0);
     const [ isVisible, setIsVisible ] = useState(false);
     const [ lastClicked, setLastClicked ] = useState(null);
-    // const [ thisList, setThisList ] = useState(null);
-
     const userInfo = data.find(user => user.userID == userID);
     const userList = userInfo.lists.find(list => list.listID == listID);
     const hasSpace = userList.listItems.length % 3 !== 0;
     
-    // set userList to state variable
-    // setThisList(userList);
 
     // function to total cost of all items
     const listCost = () => {

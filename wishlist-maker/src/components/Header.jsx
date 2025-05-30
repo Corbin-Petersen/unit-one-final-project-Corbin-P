@@ -6,7 +6,7 @@ export default function Header( props ) {
     return (
         <header>
             <div id="header-content">
-                <h1>WishLister</h1>
+                <h1>WistLish</h1>
             </div>
             <nav>
                 {/* { isLoggedIn 
