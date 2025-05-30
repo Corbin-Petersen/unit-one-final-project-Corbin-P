@@ -1,14 +1,15 @@
 import { Link, useParams } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 export default function Item( props ) {
     
     // set state and variables
-    const { itemName, itemCost, itemID, itemImg, itemQuantity, itemURL, closeItem } = props;
+    const { itemName, itemCost, itemImg, itemQuantity, itemURL, closeItem } = props;
 
     return (
         <div className="modal view-item">
-            <button className="close" onClick={closeItem}>&times;</button>
+            <button className="close square" onClick={closeItem}><i className="fa-solid fa-xmark"></i></button>
             <div id="item-container" className="col">
                 <div id="item-img">
                     <img src={itemImg} className="img-reg" />
@@ -21,8 +22,9 @@ export default function Item( props ) {
                     {itemQuantity && 
                         <p className="needed">QUANTITY: <span className="num-needed">{itemQuantity}</span></p>
                     }
-                    <button id="edit-item" title="edit item"><FontAwesomeIcon icon="fa-solid fa-pen" /></button>
-                    <button id="go-to-item" title="link to item" onClick={() => window.open(itemURL, '_blank')}><FontAwesomeIcon icon="fa-solid fa-up-right-from-square" /></button>
+                    <button id="edit-item-btn" className="edit-item square" title="edit item"><i className="fa-solid fa-pen"></i></button>
+                    <button id="delete-item-btn" className="delete-item square" title="delete item"><i className="fa-solid fa-trash-can"></i></button>
+                    <button id="go-to-item" className="square" title="link to item" onClick={() => window.open(itemURL, '_blank')}><i className="fa-solid fa-up-right-from-square"></i></button>
                 </div>
             </div>
         </div>

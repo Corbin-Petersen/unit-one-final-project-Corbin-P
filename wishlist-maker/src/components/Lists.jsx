@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ListBlock from "./ListBlock";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 
-export default function Lists( {data} ) {
+export default function Lists( props ) {
+    // pull in params and set variables
     const { userID } = useParams();
+    const { data } = props;
     const userInfo = data.find(user => user.userID == userID);
+
 
     return (
         <div className="component col">
@@ -15,7 +19,7 @@ export default function Lists( {data} ) {
             <div id="lists-list" className="col">
                 <div id="lists-header" className="row">
                     <h3>YOUR LISTS</h3>
-                    <button id="new-list-btn" title="new list"><FontAwesomeIcon icon="fa-solid fa-plus" /></button>
+                    <button id="new-list-btn" className="square" title="new list"><i className="fa-solid fa-plus"></i></button>
                 </div>
                 {userInfo.lists.map(list => (
                     <div key={list.listID} className="list-block row" id={list.listID}>
@@ -26,8 +30,8 @@ export default function Lists( {data} ) {
                                 <p>{list.listItems.length} Items</p>
                             </div>
                         </Link>
-                        <button className="edit-btn" title="edit list"><FontAwesomeIcon icon="fa-solid fa-pen" /></button>
-                        <button className="delete-btn"><FontAwesomeIcon icon="fa-solid fa-trash" /></button>
+                        <button className="edit-list square-bg" title="edit list"><i className="fa-solid fa-pen"></i></button>
+                        <button className="delete-list square-bg"><i className="fa-solid fa-trash-can"></i></button>
                     </div>
                 ))}
             </div>

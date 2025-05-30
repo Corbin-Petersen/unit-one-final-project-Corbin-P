@@ -1,20 +1,25 @@
+import { useEffect, useRef, useState } from "react";
 import { NavLink, useParams } from "react-router";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import NewItem from "./NewItem";
-import { useRef, useState } from "react";
 import Item from "./Item";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 export default function ViewList( props ) {
-    
     // pull in params and set variables
     const { userID, listID } = useParams();
     const { data } = props;
     const newItemModal = useRef(0);
     const [ isVisible, setIsVisible ] = useState(false);
     const [ lastClicked, setLastClicked ] = useState(null);
+    // const [ thisList, setThisList ] = useState(null);
+
     const userInfo = data.find(user => user.userID == userID);
     const userList = userInfo.lists.find(list => list.listID == listID);
     const hasSpace = userList.listItems.length % 3 !== 0;
+    
+    // set userList to state variable
+    // setThisList(userList);
 
     // function to total cost of all items
     const listCost = () => {
@@ -64,9 +69,9 @@ export default function ViewList( props ) {
             }, 1),
             setLastClicked(null)
         );
-        console.log(lastClicked);
         setIsVisible(!isVisible);
     }
+
 
     return (
         <div className="component col">
@@ -76,9 +81,8 @@ export default function ViewList( props ) {
             </div>
             <div className="listview col">
                 <div className="list-btns row">
-                    <button className="new-item-btn" style={{pointerEvents: isVisible ? "none" : "auto"}} title="add item" onClick={handleNewItem}><FontAwesomeIcon icon="fa-solid fa-plus" /></button>
-                    <button className="trash-list-btn" style={{pointerEvents: isVisible ? "none" : "auto"}} title="delete list"><FontAwesomeIcon icon="fa-solid fa-trash" /></button>
-                    <button className="share-list-btn" style={{pointerEvents: isVisible ? "none" : "auto"}} title="share list"><FontAwesomeIcon icon="fa-solid fa-share" /></button>
+                    <button className="new-item-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="add item" onClick={handleNewItem}><i className="fa-solid fa-plus"></i></button>
+                    <button className="share-list-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="share list"><i className="fa-solid fa-share"></i></button>
                 </div>
                 <div className="list-totals row">
                     <span id="item-count">ITEMS: <b>{userList.listItems.length}</b></span>
@@ -107,7 +111,7 @@ export default function ViewList( props ) {
                 </div>
             </div>
             <div className="modal-bg" ref={newItemModal}>
-                <NewItem closeModal={handleNewItem} />
+                <NewItem data={data} userInfo={userInfo} userList={userList} closeModal={handleNewItem} />
             </div>
         </div>
     );

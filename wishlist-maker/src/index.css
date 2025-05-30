@@ -1,24 +1,3 @@
-/* -------- FLEX CONTENT CSS -------- */
-
-.row {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-.col {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.grow {
-    flex: 1 1 auto;
-}
-.spacer {
-    flex: 1 1 auto;
-    max-width: 30%;
-}
-
-
 /* -------- PAGE STRUCTURE --------  */
 
 body {
@@ -66,18 +45,59 @@ footer {
     align-items: center;
 }
 
-/* --- FONT STYLING --- */
+
+
+/* -------------------------
+----- FLEX CONTENT CSS -----
+------------------------- */
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-content: center;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-content: center;
+}
+.grow {
+    flex: 1 1 auto;
+}
+.spacer {
+    flex: 1 1 auto;
+    max-width: 60%;
+}
+
+
+
+
+/* -------------------------
+------- FONT STYLING -------
+------------------------- */
 .emphasis {
     font-weight: bold;
     font-style: italic;
 }
 
-/* --- BUTTONS --- */
+.no-decorate {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+/* --------------------------
+---------- BUTTONS ----------
+-------------------------- */
+
 button {
     border: 1px solid transparent;
     border-radius: 4px;
     font-size: medium;
-    padding: 0px 10px;
+    /* padding: 0px 10px; */
     /* margin: 5px 10px 5px 0; */
     height: 30px;
     background-color: #e7e7e7;
@@ -88,19 +108,37 @@ button:hover {
     border-color: #e7e7e7;
     background-color: rgb(188, 207, 241);
 }
-#new-list-btn {
+
+.square {
     aspect-ratio: 1/1;
+    width: 35px;
     height: auto;
 }
-.edit-btn, .delete-btn {
-    height: 75%;
+
+.square-bg {
     aspect-ratio: 1/1;
+}
+
+#new-list-btn:hover,
+.new-item-btn:hover {
+    background-color: rgba(0, 200, 0, 0.5);
+}
+
+.edit-list, 
+.delete-list {
+    height: 75%;
     background-color: transparent;
     opacity: .5;
 }
-.edit-btn:hover, .delete-btn:hover {
+.edit-list:hover, 
+.delete-list:hover {
     opacity: 1;
 }
+.delete-item:hover, 
+.delete-list:hover {
+    background-color: rgb(244, 178, 178);
+}
+
 .submit-btn{
     background-color: rgb(242, 202, 202);
     width: 50%;
@@ -110,13 +148,29 @@ button:hover {
     background-color: rgb(244, 178, 178);
 }
 
+.close {
+    color: #838383;
+    float: right;
+    background-color: transparent;
+}
+.close:hover {
+    color: black;
+    text-decoration: none;
+}
+
+
+
+/* -------------------------
+---------- IMAGES ----------
+------------------------- */
 
 img {
     border-radius: 5px;
 }
 .img-reg {
     max-width: 100%;
-    max-height: 50vw;
+    max-height: 100%;
+    object-fit: contain;
     margin: auto;
 }
 .img-small {
@@ -126,13 +180,11 @@ img {
 }
 
 
-.no-decorate {
-    text-decoration: none;
-    color: inherit;
-}
 
 
-/* ---- modal styling ---- */
+/* -------------------------
+---------- MODALS ----------
+------------------------- */
 
 .modal-bg {
     display: none;
@@ -149,39 +201,28 @@ img {
     cursor: default;
 }
 .modal {
-    /* margin: 20vw auto;  */
     border: 1px solid transparent;
     border-radius: 6px;
-    min-width: 300px;
-    width: 50vw;
+    max-width: 65%;
+    max-height: 80%;
     padding: 10px;
     background-color: #e7e7e7;
     color: rgb(179, 0, 0);
     font-weight: bolder;
     text-align: center;
     justify-content: stretch;
-    align-self: center;
     pointer-events: auto;
 }
 .modal > p {
     padding: 30px;
 
 }
-.close {
-    color: #838383;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    background-color: transparent;
-    aspect-ratio: 1/1;
-    height: auto;
-}
-.close:hover {
-    color: black;
-    text-decoration: none;
-}
 
-/* ---- form styling ---- */
+
+
+/* --------------------------
+----------- FORMS -----------
+-------------------------- */
 
 form {
     margin-bottom: 20px;
@@ -201,7 +242,11 @@ label {
 }    
 
 
-/* -------- WELCOME & LOGIN PAGE -------- */
+
+/* -------------------------
+---- WELCOME/LOGIN PAGE ----
+------------------------- */
+
 #about-info {
     box-sizing: border-box;
     border-radius: 10px;
@@ -236,7 +281,10 @@ label {
 }
 
 
-/* -------- PAGE OF LISTS -------- */
+
+/* -------------------------
+-------- LISTS PAGE --------
+------------------------- */
 
 #list-welcome {
     width: 100%;
@@ -252,11 +300,8 @@ label {
 }
 #lists-header h3 {
     font-weight: 300;
-}
-#lists-header h3 {
     flex: 1 1 auto;
 }
-
 
 .list-block {
     flex-wrap: nowrap;
@@ -290,11 +335,14 @@ label {
     padding: 0;
 }
 
-
 /* .link-btn {
 } */
 
-/* -------- LIST VIEW PAGE -------- */
+
+
+/* -------------------------
+------ VIEW LIST PAGE ------
+------------------------- */
 
 .list-totals {
     width: 100%;
@@ -302,12 +350,15 @@ label {
     padding: 5px 10px;
     background-color: rgb(223, 231, 246);
 }
+
 #item-count, #cost-total {
     flex: 1 1 auto;
 }
+
 #item-count {
     text-align: left;
 }
+
 #cost-total {
     text-align: right;
 }
@@ -330,7 +381,7 @@ label {
 .list-display {
     width: 100%;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .item-link {
@@ -341,8 +392,8 @@ label {
 
 .item {
     width: 30%;
-    min-width: 230px;
-    margin: 10px 0;
+    min-width: 280px;
+    margin: 10px auto;
     box-sizing: border-box;
     border-radius: 15px;
     padding: 10px;
@@ -391,7 +442,7 @@ label {
     align-content: center;
     padding: 5px 10px;
     margin: 0;
-    background-image: linear-gradient(to right, transparent, rgb(121, 120, 149));
+    background-image: linear-gradient(to right, transparent, rgb(119, 143, 184));
     border-radius: 0 0 10px 10px;
     color: white;
 }
@@ -402,37 +453,7 @@ label {
 
 
 
-/* -------- NEW LIST & NEW ITEM PAGES -------- */
-
-/* #new-list-header, #new-item-header {
-} */
-.make-new {
-    color: black;
-}
-
-#new-list, #new-item {
-    min-width: 300px;
-    text-align: left;
-}
-
-/* #new-item {    
-} */
-
-#list-name, #list-info, #item-name, #item-URL {
-    flex: 1 1 auto;
-    font-size: medium;
-    /* margin: 5px 0; */
-}
-
-#cost-img-input {
-    width: 100%;
-}
-#item-cost {
-    flex: 1 1 auto;
-}
-
-
-/* -------- VIEW ITEM PAGE -------- */
+/* -------- ITEM PAGE -------- */
 
 .view-item {
     box-sizing: border-box;
@@ -442,20 +463,32 @@ label {
 
 #item-container {
     width: 100%;
+    max-height: 100%;
     margin: 0px;
     padding: 10px 0px;
     background-color: #f2f2f2;
     border-radius: 6px;
+    box-sizing: border-box;
 }
 
 #item-img {
-    display: flex;
+    /* display: flex; */
     width: 100%;
+    height: 45vw;
     background-color: white;
+    align-items: center;
+    align-self: center;
 }
 
 #item-details {
     width: 100%;
+}
+#item-details > * {
+    margin: 0;
+    padding: 0;
+}
+#item-details > h3 {
+    color: green;
 }
 
 #item-btns {
@@ -473,4 +506,39 @@ label {
 
 .num-needed {
     font-weight: bolder;
+    color: rgb(119, 143, 184);
+}
+
+
+
+/* -------- NEW LIST & NEW ITEM PAGES -------- */
+
+/* #new-list-header, #new-item-header {
+} */
+.make-new {
+    color: black;
+    padding-bottom: 0;
+}
+
+#new-list, #new-item {
+    min-width: 300px;
+    text-align: left;
+}
+
+#new-image {  
+    width: 100%;
+    height: 30vw;
+}
+
+#list-name, #list-info, #item-name, #item-URL {
+    flex: 1 1 auto;
+    font-size: medium;
+    /* margin: 5px 0; */
+}
+
+#cost-img-input {
+    width: 100%;
+}
+#item-cost {
+    flex: 1 1 auto;
 }

@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
 
 export default function Welcome( props ) {
     
@@ -9,10 +11,10 @@ export default function Welcome( props ) {
     const [ loginPass, setLoginPass ] = useState(null);
     const modalDiv = useRef(0);
     const navigate = useNavigate();
-            
+    
     // functions to handle modal fade-in and fade-out
     const openModal = () => {
-        modalDiv.current.style.display = "block";
+        modalDiv.current.style.display = "flex";
         setTimeout(() => {
             modalDiv.current.style.opacity = "1";
         }, 1);
@@ -48,7 +50,6 @@ export default function Welcome( props ) {
                 setLogin(true);
                 login = true;
             }
-            console.log(login);
         }
         login ? navigate(`${myID}/lists`) : openModal();
     }
@@ -56,11 +57,11 @@ export default function Welcome( props ) {
     return (
         <div className="component row">
             <div id="about-info">
-                <h2>Welcome to WishLister!</h2>
-                <span className="emphasis">What is WishLister?</span><br/>
-                <p>WishLister is your way to easily build wish lists from items you find <i>all over</i> the interwebs! </p>
+                <h2>Welcome to WistLish!</h2>
+                <span className="emphasis">What is WistLish?</span><br/>
+                <p>WistLish is your way to easily build wish lists from items you find <i>all over</i> the interwebs! </p>
                 <p>Simply create a list for anything you want - like favorite spatulas or supplies for puppy shower - and either track your list yourself, or share your list with others that might want to know what items you or your new puppy wishes for!</p>
-                <p>The worldwide web is your oyster, with <span className="emphasis">WishLister</span>. </p>
+                <p>The worldwide web is your oyster, with <span className="emphasis">WistLish</span>. </p>
             </div>
             <div id="login-info" className="col">
                 <div id="login-text">
@@ -78,7 +79,7 @@ export default function Welcome( props ) {
                 </form>
                 <div id="modal-error" className="modal-bg" ref={modalDiv}>
                     <div className="modal">
-                        <button className="close" onClick={closeModal}>&times;</button>
+                        <button className="close square" onClick={closeModal}>&times;</button>
                         <p>Oops! Incorrect Username or Password. <br/>
                         Please try again.</p>
                     </div>
