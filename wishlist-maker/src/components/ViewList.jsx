@@ -9,13 +9,16 @@ export default function ViewList( props ) {
     // pull in params and set variables
     const { userID, listID } = useParams();
     const { data } = props;
-    const newItemModal = useRef(0);
-    const [ isVisible, setIsVisible ] = useState(false);
-    const [ lastClicked, setLastClicked ] = useState(null);
+    const newItemModal = useRef(null);
+    const viewItemModal = useRef(null);
     const userInfo = data.find(user => user.userID == userID);
     const userList = userInfo.lists.find(list => list.listID == listID);
     const hasSpace = userList.listItems.length % 3;
+    const [ isVisible, setIsVisible ] = useState(false);
+    const [ hasItems, setHasItems ] = useState(true);
+    const [ thisItem, setThisItem ] = useState(null);
     
+    userList.listItems.length === 0 && setHasItems(false);
 
     // function to total cost of all items
     const listCost = () => {
@@ -28,46 +31,23 @@ export default function ViewList( props ) {
         return total.toFixed(2);
     }    
 
-    // functions to handle modals
-    const handleNewItem = () => {
+    // function to handle modals
+    const handleModal = (divRef) => {
         !isVisible ? (
-            document.body.style.overflow = "hidden",
-            newItemModal.current.style.display = "flex",
+            setThisItem(divRef), 
+            divRef.style.display = "flex",
             setTimeout(() => {
-                newItemModal.current.style.opacity = "1",
-                newItemModal.current.lastElementChild.style.transform = "translateY(0px)"
+                document.body.style.overflow = "hidden",
+                divRef.style.opacity = "1",
+                divRef.lastElementChild.style.transform = "translateY(0px)"
             }, 1)
         ) : (
             document.body.style.overflow = "visible",
-            newItemModal.current.style.opacity = "0",
-            newItemModal.current.lastElementChild.style.transform = "translateY(-25px)",
+            divRef.style.opacity = "0",
+            divRef.lastElementChild.style.transform = "translateY(-25px)",
             setTimeout(() => {
-                newItemModal.current.style.display = "none"
+                divRef.style.display = "none"
             }, 250)
-        );
-        setIsVisible(!isVisible);
-    }
-    const handleItemView = (e) => {
-        let clicked = e.currentTarget;
-        let item = e.currentTarget.lastElementChild;
-        !isVisible ? (
-            document.body.style.overflow = "hidden",
-            clicked.style.pointerEvents = "none",
-            item.style.display = "flex",
-            setTimeout(() => {
-                item.style.opacity = "1",
-                item.lastElementChild.style.transform = "translateY(0px)"
-            }, 1),
-            setLastClicked(item)
-        ) : (
-            document.body.style.overflow = "visible",
-            clicked.style.pointerEvents = "auto",
-            lastClicked.style.opacity = "0",
-            lastClicked.lastElementChild.style.transform = "translateY(-25px)",
-            setTimeout(() => {
-                lastClicked.style.display = "none"
-            }, 250),
-            setLastClicked(null)
         );
         setIsVisible(!isVisible);
     }
@@ -81,7 +61,7 @@ export default function ViewList( props ) {
             </div>
             <div className="listview col">
                 <div className="list-btns row">
-                    <button className="new-item-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="add item" onClick={handleNewItem}><i className="fa-solid fa-plus"></i></button>
+                    <button className="new-item-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="add item" onClick={() => handleModal(newItemModal.current)}><i className="fa-solid fa-plus"></i></button>
                     <button className="share-list-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="share list"><i className="fa-solid fa-share"></i></button>
                 </div>
                 <div className="list-totals row">
@@ -89,28 +69,35 @@ export default function ViewList( props ) {
                     <span id="cost-total">TOTAL: <b>${listCost()}</b></span>
                 </div>
                 <div className="list-display row">
-                    {userList.listItems.map(item => (
-                        <div key={`${item.itemID}`} id="item.itemID" className="item col" style={{pointerEvents: isVisible ? "none" : "auto"}} onClick={handleItemView}>
-                            <div className="item-block-img" style={{backgroundImage: `url(${item.itemImg})`}}>
-                                {item.quantity && 
-                                    <p className="list-need">QUANTITY: <span className="list-need-num">{item.quantity}</span></p>
-                                }
+                    { hasItems ? userList.listItems.map(item => (
+                    <>
+                        <div key={`${item.itemID}`} id={`${item.itemID}`} className="item col" onClick={(e) => handleModal(e.currentTarget.nextElementSibling)} style={{pointerEvents: isVisible ? "none" : "auto"}}>
+                            <div className="item-block-img" style={{backgroundImage: item.itemImg == "" ? "/src/assets/default-img.png" : `url(${item.itemImg})`}}>
+                            {item.quantity > 1 && 
+                                <p className="list-need">QUANTITY: <span className="list-need-num">{item.quantity}</span></p>
+                            }
                             </div>
                             <div className="item-block-text">
                                 <h4>{item.itemName}</h4>
                                 <p className="price">${item.itemCost}</p>
                             </div>
-                            <div id={`${item.itemID}-view`} className="modal-bg">
-                                <Item itemName={item.itemName} itemCost={item.itemCost} itemID={item.itemID} itemImg={item.itemImg} itemQuantity={item.quantity} itemURL={item.itemURL} closeItem={handleItemView} />
-                            </div>
                         </div>
-                    ))}
+                        <div id={`${item.itemID}-view`} className="modal-bg" >
+                            <Item data={data} userInfo={userInfo} userList={userList} item={item} handleModal={handleModal} viewItemModal={viewItemModal} thisItem={thisItem} setThisItem={setThisItem} />
+                        </div>
+                    </>
+                    )) : (
+                        <div id="no-items" className="col">
+                            <h3>This list is empty</h3>
+                            <p>Add an item to get started!</p>
+                        </div>
+                    )}
                     { hasSpace === 2 && <div className="space2"></div> }
                     { hasSpace === 1 && <div className="space1 grow"></div> }
                 </div>
             </div>
             <div className="modal-bg" ref={newItemModal}>
-                <NewItem data={data} userInfo={userInfo} userList={userList} closeModal={handleNewItem} />
+                <NewItem data={data} userInfo={userInfo} userList={userList} handleModal={handleModal} setHasItems={setHasItems} newItemModal={newItemModal} />
             </div>
         </div>
     );

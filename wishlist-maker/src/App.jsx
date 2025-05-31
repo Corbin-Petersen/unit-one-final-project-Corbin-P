@@ -24,6 +24,7 @@ function App() {
   const data = JSON.parse(localStorage.getItem('fakeData'));
   !data && localStorage.setItem('fakeData', JSON.stringify(presetData));
   
+  console.log(data);
   
   return (
     <>

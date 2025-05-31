@@ -40,6 +40,7 @@ export default function NewList( props ) {
         localStorage.setItem('fakeData', JSON.stringify(data));
 
         handleNewList();
+        navigate(formData.listID);
     }
 
     return (

@@ -154,6 +154,23 @@ button:hover {
     text-decoration: none;
 }
 
+.confirm, .cancel {
+    width: 150px;
+    height: 35px;
+    border-color: transparent;
+}
+.confirm {
+    background-color: rgb(150, 255, 150);
+}
+.confirm:hover {
+    background-color: rgb(0, 255, 0);
+}
+.cancel {
+    background-color: rgb(255, 140, 140);
+}
+.cancel:hover {
+    background-color: rgb(255, 60, 60);
+}
 /* 
 .new-item-btn
 .trash-list-btn
@@ -217,6 +234,28 @@ img {
 }
 .modal > p {
     padding: 30px;
+}
+.confirm-it {
+    display: none;
+    flex-direction: column;
+    opacity: 0;
+    position: inherit;
+    width: 100%;
+    height: 100%;
+    align-self: anchor-center;
+    justify-self: anchor-center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.65);
+    transform: scale(.9);
+    transition: transform 250ms, opacity 250ms;
+}
+.confirm-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 
@@ -370,6 +409,16 @@ label {
     width: 100%;
     flex-wrap: wrap;
     justify-content: flex-start;
+}
+
+#no-items {
+    width: 100%;
+    height: 50vh;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .item-link {
