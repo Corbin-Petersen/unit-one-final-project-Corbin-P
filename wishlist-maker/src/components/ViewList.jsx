@@ -16,6 +16,7 @@ export default function ViewList( props ) {
     const [ isVisible, setIsVisible ] = useState(false);
     const [ hasItems, setHasItems ] = useState(true);
     const [ thisItem, setThisItem ] = useState(null);
+    const [ copied, setCopied ] = useState(false);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -58,6 +59,29 @@ export default function ViewList( props ) {
         setIsVisible(!isVisible);
     }
 
+    // function to convert list to text for simple sharing
+    const saveToText = () => {
+        let text = "";
+        userList.listItems.map((item) => {
+            text += `${item.itemName} - $${item.itemCost}: ${item.itemURL} \n \n`;
+        });
+        return text;
+    }
+    // variable to hold the text
+    const textList = saveToText();
+
+    // handle copy onclick and trigger feedback thumbs up
+    const confirmCopy = (e) => {
+        navigator.clipboard.writeText(textList);
+        
+        setCopied(true);
+    }    
+    
+    useEffect(() => {
+        setTimeout(() => {
+            setCopied(false);
+        }, 1000)
+    }, [copied]);
 
     return (
         <div className="component col">
@@ -68,6 +92,13 @@ export default function ViewList( props ) {
             <div className="listview col">
                 <div className="list-btns row">
                     <button className="new-item-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="add item" onClick={() => handleModal(newItemModal.current)} ><i className="fa-solid fa-plus"></i></button>
+                    <button className="copy square" title="copy to clipboard" onClick={confirmCopy}>
+                    { copied ? (
+                       <span style={{color: '#008000'}}><FontAwesomeIcon icon="fa-solid fa-thumbs-up" /></span>
+                    ) : (
+                       <span><FontAwesomeIcon icon="fa-solid fa-copy" /></span>
+                    )}
+                    </button>
                     <button className="share-list-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="share list" ><Link to={`../../shared/${sharedID}`} target="_blank" className="no-decorate"><i className="fa-solid fa-share"></i></Link></button>
                 </div>
                 <div className="list-totals row">

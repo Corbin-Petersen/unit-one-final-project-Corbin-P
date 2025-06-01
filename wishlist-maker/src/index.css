@@ -233,7 +233,7 @@ button:hover {
     border-color: transparent;
 }
 .confirm {
-    background-color: rgb(150, 255, 150);
+    background-color: #96ff96;
 }
 .confirm:hover {
     background-color: rgb(0, 255, 0);
@@ -244,13 +244,11 @@ button:hover {
 .cancel:hover {
     background-color: rgb(255, 60, 60);
 }
-/* 
-.new-item-btn
-.trash-list-btn
-.share-list-btn
-.link-btn
-*/
 
+.copy span {
+    color: black;
+    transition: all 300ms;
+}
 
 
 /* -----------------------------------
