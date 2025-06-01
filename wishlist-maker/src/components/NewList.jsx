@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 export default function NewList( props ) {
@@ -16,7 +16,7 @@ export default function NewList( props ) {
     // set input handlers
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(`Updating ${name}:`, value);
+        // console.log(`Updating ${name}:`, value);
         setFormData((d) => ({
             ...d,
             [name]: value,

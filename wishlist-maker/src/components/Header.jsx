@@ -1,6 +1,5 @@
 import { NavLink, useParams } from "react-router";
-import NavBlock from "./NavBlock";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 export default function Header( props ) {
     const { data, loggedIn } = props;

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 import NewList from "./NewList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +14,7 @@ export default function Lists( props ) {
     const [ isVisible, setIsVisible ] = useState(false);
     
     const userInfo = data.find(user => user.userID == userID);
-    console.log(userInfo);
+    
     // functions to handle modals
     const handlePopup = (refs) => {
         !isVisible ? (
@@ -53,7 +53,7 @@ export default function Lists( props ) {
     let theseLists =  userInfo.lists.map(list => 
     list.listItems.length
     )
-    console.log(theseLists);
+    
 
     return (
         <div className="component col">
@@ -74,7 +74,6 @@ export default function Lists( props ) {
                             <p>{!list.listItems ? "0" : list.listItems.length} {list.listItems.length === 1 ? "Item" : "Items"}</p>
                         </div>
                     </Link>
-                    <button className="edit-list square-bg" title="edit list"><i className="fa-solid fa-pen"></i></button>
                     <button className="delete-list square-bg" onClick={() => handlePopup(deleteListRef)}><i className="fa-solid fa-trash-can"></i></button>
                 </div> 
             ))}

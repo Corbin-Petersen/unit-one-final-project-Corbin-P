@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -16,7 +16,7 @@ export default function NewItem( props ) {
     // set input handlers
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(`Updating ${name}:`, value);
+        // console.log(`Updating ${name}:`, value);
         setFormInfo((d) => ({
             ...d,
             [name]: value,
@@ -78,7 +78,7 @@ export default function NewItem( props ) {
                     </label>
                 </div>
                 <div id="new-image">
-                    <img src={formInfo.itemImg == "" ? "/src/assets/default-img.png" : formInfo.itemImg} className="img-reg" />
+                    <img src={formInfo.itemImg == "" ? "/src/assets/default-img.png" : formInfo.itemImg} className="img-new" />
                 </div>
                 <button className="submit-btn" >SUBMIT</button>
             </form>

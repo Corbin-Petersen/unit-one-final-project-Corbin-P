@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router";
+import { useEffect, useRef, useState, Fragment } from "react";
+import { useParams } from "react-router";
 import ShareItem from "./ShareItem";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -71,8 +71,8 @@ export default function ShareList( props ) {
                 </div>
                 <div className="list-display row">
                     { hasItems ? userList.listItems.map(item => (
-                    <>
-                        <div key={`${item.itemID}`} id={`${item.itemID}`} className="item col" onClick={(e) => handleModal(e.currentTarget.nextElementSibling)} style={{pointerEvents: isVisible ? "none" : "auto"}}>
+                    <Fragment key={`${item.itemID}`}>
+                        <div id={`${item.itemID}`} className="item col" onClick={(e) => handleModal(e.currentTarget.nextElementSibling)} style={{pointerEvents: isVisible ? "none" : "auto"}}>
                             <div className="item-block-img" style={{backgroundImage: item.itemImg == "" ? "/src/assets/default-img.png" : `url(${item.itemImg})`}}>
                             {item.quantity > 1 && 
                                 <p className="list-need">QUANTITY: <span className="list-need-num">{item.quantity}</span></p>
@@ -86,7 +86,7 @@ export default function ShareList( props ) {
                         <div id={`${item.itemID}-view`} className="modal-bg" >
                             <ShareItem data={data} userInfo={userInfo} userList={userList} item={item} handleModal={handleModal} viewItemModal={viewItemModal} thisItem={thisItem} setThisItem={setThisItem} />
                         </div>
-                    </>
+                    </Fragment>
                     )) : (
                         <div id="no-items" className="col">
                             <h3>This list is empty</h3>

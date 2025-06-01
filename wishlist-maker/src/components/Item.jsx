@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useParams } from "react-router";
+import { useParams } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -52,7 +52,7 @@ export default function Item( props ) {
             <button className="close square" onClick={(e) => handleModal(e.currentTarget.closest(".modal-bg"))}><i className="fa-solid fa-xmark"></i></button>
             <div id="item-container" className="col" style={{pointerEvents: confirmOpen ? "none" : "auto"}}>
                 <div id="item-img">
-                    <img src={item.itemImg == "" ? "/src/assets/default-img.png" : item.itemImg} className="img-reg" />
+                    <img src={item.itemImg == "" ? "/src/assets/default-img.png" : item.itemImg} className="img-reg" alt={`${item.itemName}`} />
                 </div>
                 <div id="item-details">
                     <h2>{item.itemName}</h2>
@@ -61,7 +61,6 @@ export default function Item( props ) {
                     {item.quantity > 1 && 
                         <p className="needed">QUANTITY: <span className="num-needed">{item.quantity}</span></p>
                     }
-                    <button id="edit-item-btn" className="edit-item square" title="edit item"><i className="fa-solid fa-pen"></i></button>
                     <button id="delete-item-btn" className="delete-item square" title="delete item" onClick={handleConfirm}><i className="fa-solid fa-trash-can"></i></button>
                     <button id="go-to-item" className="square" title="link to item" onClick={() => window.open(item.itemURL, '_blank')}><i className="fa-solid fa-up-right-from-square"></i></button>
                 </div>

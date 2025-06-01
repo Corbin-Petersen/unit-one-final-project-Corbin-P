@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { Link, useParams } from "react-router";
+import { useParams } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
@@ -17,7 +17,7 @@ export default function ShareItem( props ) {
             <button className="close square" onClick={(e) => handleModal(e.currentTarget.closest(".modal-bg"))}><i className="fa-solid fa-xmark"></i></button>
             <div id="item-container" className="col" style={{pointerEvents: confirmOpen ? "none" : "auto"}}>
                 <div id="item-img">
-                    <img src={item.itemImg == "" ? "/src/assets/default-img.png" : item.itemImg} className="img-reg" />
+                    <img src={item.itemImg == "" ? "/src/assets/default-img.png" : item.itemImg} className="img-reg" alt={`${item.itemName}`} />
                 </div>
                 <div id="item-details">
                     <h2>{item.itemName}</h2>

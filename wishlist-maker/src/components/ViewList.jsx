@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, NavLink, useNavigate, useParams } from "react-router";
+import { useEffect, useRef, useState, Fragment } from "react";
+import { Link, useNavigate, useParams } from "react-router";
 import NewItem from "./NewItem";
 import Item from "./Item";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -67,7 +67,7 @@ export default function ViewList( props ) {
             </div>
             <div className="listview col">
                 <div className="list-btns row">
-                    <button className="new-item-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="add item" ><i className="fa-solid fa-plus"></i></button>
+                    <button className="new-item-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="add item" onClick={() => handleModal(newItemModal.current)} ><i className="fa-solid fa-plus"></i></button>
                     <button className="share-list-btn square" style={{pointerEvents: isVisible ? "none" : "auto"}} title="share list" ><Link to={`../../shared/${sharedID}`} target="_blank" className="no-decorate"><i className="fa-solid fa-share"></i></Link></button>
                 </div>
                 <div className="list-totals row">
@@ -76,8 +76,8 @@ export default function ViewList( props ) {
                 </div>
                 <div className="list-display row">
                     { hasItems ? userList.listItems.map(item => (
-                    <>
-                        <div key={`${item.itemID}`} id={`${item.itemID}`} className="item col" onClick={(e) => handleModal(e.currentTarget.nextElementSibling)} style={{pointerEvents: isVisible ? "none" : "auto"}}>
+                    <Fragment key={`${item.itemID}`}>
+                        <div id={`${item.itemID}`} className="item col" onClick={(e) => handleModal(e.currentTarget.nextElementSibling)} style={{pointerEvents: isVisible ? "none" : "auto"}}>
                             <div className="item-block-img" style={{backgroundImage: item.itemImg == "" ? "/src/assets/default-img.png" : `url(${item.itemImg})`}}>
                             {item.quantity > 1 && 
                                 <p className="list-need">QUANTITY: <span className="list-need-num">{item.quantity}</span></p>
@@ -91,7 +91,7 @@ export default function ViewList( props ) {
                         <div id={`${item.itemID}-view`} className="modal-bg" >
                             <Item data={data} userInfo={userInfo} userList={userList} item={item} handleModal={handleModal} viewItemModal={viewItemModal} thisItem={thisItem} setThisItem={setThisItem} />
                         </div>
-                    </>
+                    </Fragment>
                     )) : (
                         <div id="no-items" className="col">
                             <h3>This list is empty</h3>
