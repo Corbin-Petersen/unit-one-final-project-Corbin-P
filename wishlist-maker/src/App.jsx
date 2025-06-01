@@ -1,14 +1,13 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router";
-import './App.css';
+import { Route, Routes } from "react-router";
 import Header from './components/Header';
-import Home from './components/Home';
-import Lists from './components/Lists';
-import ViewList from './components/ViewList';
-import NewList from './components/NewList';
-import NewItem from './components/NewItem';
 import Footer from './components/Footer';
+import Home from './components/Home';
 import Item from './components/Item';
+import Lists from './components/Lists';
+import NewItem from './components/NewItem';
+import NewList from './components/NewList';
+import ViewList from './components/ViewList';
 import presetData from './data/userData.json';
 // import fontawesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,26 +16,22 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 library.add(fas);
 
 function App() {
-  const [ isLoggedIn, setLogin ] = useState(false);
+  const [ loggedIn, setLoggedIn ] = useState(null);
   
   // send dummy data to local storage
-  // localStorage.setItem('fakeData', JSON.stringify(presetData));
   const data = JSON.parse(localStorage.getItem('fakeData'));
   !data && localStorage.setItem('fakeData', JSON.stringify(presetData));
-  
-  console.log(data);
-  
+    
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} setLogin={setLogin} data={data} library={library} />
-      <Router>
+      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} data={data} />
         <Routes>
-          <Route path="/" element={<Home isLoggedIn={isLoggedIn} setLogin={setLogin} data={data} />} />
+          <Route path="/" element={<Home loggedIn={loggedIn} setLoggedIn={setLoggedIn} data={data} />} />
           <Route path=":userID">
             <Route path="lists">
-              <Route index element={<Lists data={data} />} />
+              <Route index element={<Lists data={data} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
               <Route path=":listID">
-                <Route index element={<ViewList data={data} />} />
+                <Route index element={<ViewList data={data} c={loggedIn} setLoggedIn={setLoggedIn} />} />
                 <Route path=":itemID" element={<Item data={data} />} />
                 <Route path="new" element={<NewItem />} />
               </Route>
@@ -44,7 +39,6 @@ function App() {
             </Route>
           </Route>
         </Routes>
-      </Router>
       <Footer />
     </>
   )

@@ -9,16 +9,19 @@ export default function ViewList( props ) {
     // pull in params and set variables
     const { userID, listID } = useParams();
     const { data } = props;
-    const newItemModal = useRef(null);
-    const viewItemModal = useRef(null);
     const userInfo = data.find(user => user.userID == userID);
     const userList = userInfo.lists.find(list => list.listID == listID);
-    const hasSpace = userList.listItems.length % 3;
+    const newItemModal = useRef(null);
+    const viewItemModal = useRef(null);
     const [ isVisible, setIsVisible ] = useState(false);
     const [ hasItems, setHasItems ] = useState(true);
     const [ thisItem, setThisItem ] = useState(null);
     
-    userList.listItems.length === 0 && setHasItems(false);
+    useEffect(() => {
+        userList.listItems.length < 1 && setHasItems(false);
+    }, []);
+
+    const hasSpace = !hasItems ? 0 : userList.listItems.length % 3;
 
     // function to total cost of all items
     const listCost = () => {

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -6,9 +6,10 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 export default function Home( props ) {
     
     // set up states & variables
-    const { setLogin, data } = props;
+    const { loggedIn, setLoggedIn, data } = props;
     const [ loginUser, setLoginUser ] = useState(null);
     const [ loginPass, setLoginPass ] = useState(null);
+    const [ clickedIn, setClickedIn ] = useState(null);
     const modalDiv = useRef(0);
     const navigate = useNavigate();
     
@@ -47,12 +48,16 @@ export default function Home( props ) {
         for (let users of data) {
             if (loginUser == users.userName && loginPass == users.pass) {
                 myID = users.userID;
-                setLogin(true);
                 login = true;
+                setLoggedIn(users.userID);
             }
         }
         login ? navigate(`${myID}/lists`) : openModal();
     }
+
+    // useEffect(() => {
+    //     setLoggedIn(clickedIn);
+    // }, [clickedIn]);
 
     return (
         <div className="component row">
@@ -73,12 +78,12 @@ export default function Home( props ) {
                         <input type="email" id="login-user" name="user" placeholder="valid@email.com" onChange={setUser} />
                     </label>
                     <label>PASSWORD
-                        <input type="password" id="login-pass" name="password" onChange={setPass} />
+                        <input type="password" id="login-pass" name="password" autoComplete="current password" onChange={setPass} />
                     </label>
                     <button type="submit">LOGIN</button>
                 </form>
                 <div id="modal-error" className="modal-bg" ref={modalDiv}>
-                    <div className="modal">
+                    <div id="login-error" className="modal col">
                         <button className="close square" onClick={closeModal}>&times;</button>
                         <p>Oops! Incorrect Username or Password. <br/>
                         Please try again.</p>

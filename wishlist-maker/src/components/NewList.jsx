@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 export default function NewList( props ) {
     
     // destructure props, set states and variables
-    const { data, handleNewList, userInfo } = props;
+    const { data, handlePopup, userInfo, newListRef } = props;
     const [ formData, setFormData ] = useState({
         listID: "",
         listName: "",
@@ -31,7 +31,7 @@ export default function NewList( props ) {
         const userIndex = data.findIndex((i) => i.userID === userInfo.userID);
 
         // add randomly-generated listID to new list
-        formData.listID = `${userInfo.userID}-${Math.floor(Math.random() * 900) + 100}`;
+        formData.listID = `${userInfo.firstName}${Math.floor(Math.random() * 900) + 100}`;
 
         // add new list to the lists array inside current user
         data[userIndex].lists.push(formData);
@@ -39,13 +39,13 @@ export default function NewList( props ) {
         // push to localStorage
         localStorage.setItem('fakeData', JSON.stringify(data));
 
-        handleNewList();
-        navigate(formData.listID);
+        handlePopup(newListRef);
+        // navigate(formData.listID);
     }
 
     return (
         <div className="modal make-new col">
-            <button className="close square" onClick={handleNewList}><i className="fa-solid fa-xmark"></i></button>
+            <button className="close square" onClick={() => handlePopup(newListRef)}><i className="fa-solid fa-xmark"></i></button>
             <div id="new-list-header">
                 <h2>Create New List</h2>
             </div>
