@@ -11,30 +11,32 @@ export default function Header( props ) {
     const handleMenu = (e) => {
         e.preventDefault();
         setMenuOpen(!menuOpen);
-        console.log(menuOpen);
+    }
+    const handleSubMenu = (e) => {
+        setMenuOpen(!menuOpen);
     }
 
     return (
         <header>
             <div id="header-content">
                 <nav>
-                    <h1>WistLish</h1>
+                    <img src="/src/assets/wistlish-logo.png" />
                     <div className="menu" onClick={handleMenu}>
                         <i className="fa-solid fa-bars"></i>
                     </div>
                     {!loggedIn ? (
                     <ul className={ menuOpen ? "open" : "" }>
                         <li>
-                            <NavLink to="/">HOME</NavLink>
+                            <NavLink to="/" >HOME</NavLink>
                         </li>
                     </ul>
                     ) : (
-                    <ul>
+                    <ul className={ menuOpen ? "open" : "" }>
                         <li>
-                            <NavLink to={`${loggedIn}/lists`} end>MY LISTS</NavLink>
+                            <NavLink to={`${loggedIn}/lists`} onClick={handleSubMenu} end>MY LISTS</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/" reloadDocument end>LOGOUT</NavLink>
+                            <NavLink to="/" onClick={handleSubMenu} reloadDocument end>LOGOUT</NavLink>
                         </li>
                     </ul>
                     )}

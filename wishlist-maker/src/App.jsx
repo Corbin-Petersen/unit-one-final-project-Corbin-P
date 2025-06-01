@@ -8,6 +8,7 @@ import Lists from './components/Lists';
 import NewItem from './components/NewItem';
 import NewList from './components/NewList';
 import ViewList from './components/ViewList';
+import ShareList from './components/ShareList';
 import presetData from './data/userData.json';
 // import fontawesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -36,6 +37,9 @@ function App() {
                 <Route path="new" element={<NewItem />} />
               </Route>
               <Route path="new" element={<NewList data={data} />} />
+            </Route>
+            <Route path="shared">
+              <Route path=":sharedID" element={<ShareList data={data} />} />
             </Route>
           </Route>
         </Routes>

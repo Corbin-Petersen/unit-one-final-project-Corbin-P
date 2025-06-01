@@ -60,7 +60,7 @@ export default function Home( props ) {
     // }, [clickedIn]);
 
     return (
-        <div className="component row">
+        <div className="home-component">
             <div id="about-info">
                 <h2>Welcome to WistLish!</h2>
                 <span className="emphasis">What is WistLish?</span><br/>
