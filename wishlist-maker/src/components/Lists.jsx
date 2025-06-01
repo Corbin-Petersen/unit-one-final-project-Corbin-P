@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router";
 import NewList from "./NewList";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,8 +12,13 @@ export default function Lists( props ) {
     const newListRef = useRef(0);
     const deleteListRef = useRef(0);
     const [ isVisible, setIsVisible ] = useState(false);
+    const [ hasLists, setHasLists ] = useState(true);
     
     const userInfo = data.find(user => user.userID == userID);
+
+    useEffect(() => {
+        userInfo.lists.length < 1 && setHasLists(false);
+    }, []);
     
     // functions to handle modals
     const handlePopup = (refs) => {
@@ -65,7 +70,7 @@ export default function Lists( props ) {
                     <h3>YOUR LISTS</h3>
                     <button id="new-list-btn" className="square" title="new list" onClick={() => handlePopup(newListRef)}><i className="fa-solid fa-plus"></i></button>
                 </div>
-            {userInfo.lists.map(list => (
+            {hasLists ? userInfo.lists.map(list => (
                 <div key={list.listID} className="list-block row" id={list.listID}>
                     <Link to={list.listID} className="no-decorate row grow" >
                         <img src={list.listItems.length === 0 ? "/src/assets/default-img.png" : list.listItems[0].itemImg} className="img-small" />
@@ -76,7 +81,12 @@ export default function Lists( props ) {
                     </Link>
                     <button className="delete-list square-bg" onClick={() => handlePopup(deleteListRef)}><i className="fa-solid fa-trash-can"></i></button>
                 </div> 
-            ))}
+            )) : (
+                <div className="no-lists col">
+                    <h4>You have no lists</h4>
+                    <p>Create a list to get started!</p>
+                </div>
+            )}
             </div>
             <div className="modal-bg" ref={newListRef}>
                 <NewList data={data} handlePopup={handlePopup} userInfo={userInfo} newListRef={newListRef} />
