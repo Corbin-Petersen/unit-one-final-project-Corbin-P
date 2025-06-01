@@ -73,7 +73,7 @@ export default function Lists( props ) {
             {hasLists ? userInfo.lists.map(list => (
                 <div key={list.listID} className="list-block row" id={list.listID}>
                     <Link to={list.listID} className="no-decorate row grow" >
-                        <img src={list.listItems.length === 0 ? "/src/assets/default-img.png" : list.listItems[0].itemImg} className="img-small" />
+                        <img src={list.listItems.length === 0 ? "/public/default-img.png" : list.listItems[0].itemImg} className="img-small" />
                         <div className="list-block-text grow">
                             <h4>{list.listName}</h4>
                             <p>{!list.listItems ? "0" : list.listItems.length} {list.listItems.length === 1 ? "Item" : "Items"}</p>
