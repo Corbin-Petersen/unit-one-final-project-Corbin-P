@@ -19,7 +19,7 @@ export default function Header( props ) {
         <header>
             <div id="header-content">
                 <nav>
-                    <img src="/public/wistlish-logo.png" />
+                    <img src="/wistlish-logo.png" />
                     <div className="menu" onClick={handleMenu}>
                         <i className="fa-solid fa-bars"></i>
                     </div>
