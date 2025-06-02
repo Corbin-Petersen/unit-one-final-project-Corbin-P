@@ -344,6 +344,7 @@ img {
 
 form {
     margin-bottom: 20px;
+    font-size: medium;
 }    
 
 input, textarea {
@@ -352,6 +353,7 @@ input, textarea {
     border: 1px solid lightgray;
     font-family: "Outfit", sans-serif;
     font-weight: 200;
+    font-size: medium;
 }    
 
 label {
@@ -680,9 +682,16 @@ label {
 #new-image {  
     width: 100%;
     height: 30vw;
+    justify-content: center;
+    display: flex;
 }
 
-#list-name, #list-info, #item-name, #item-URL {
+#list-name, 
+#list-info, 
+#item-name, 
+#item-URL,
+#link-image,
+#cost-count-inputs {
     flex: 1 1 auto;
     font-size: medium;
 }
@@ -781,6 +790,14 @@ label {
 
     .img-reg {
         max-height: 65vh;
+    }
+
+    #new-image {
+        height: 65vw;
+    }
+
+    .img-new {
+        max-height: 100%;
     }
 
 } 
