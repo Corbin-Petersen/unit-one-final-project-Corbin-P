@@ -702,6 +702,13 @@ label {
     flex: 1 1 auto;
 }
 
+#cost-count-inputs {
+    justify-content: center;
+}
+#cost-count-inputs input {
+    width: 92%;
+}
+
 
 /* -------------------------------------
 -------------- RESPONSIVE --------------
