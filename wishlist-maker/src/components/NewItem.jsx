@@ -47,7 +47,7 @@ export default function NewItem( props ) {
         setHasItems(true);
 
         // reset formInfo
-        setFormInfo({ itemID: "", itemName: "", itemCost: "", itemURL: "", itemImg: "/public/default-img.png", quantity: 1 });
+        setFormInfo({ itemID: "", itemName: "", itemCost: "", itemURL: "", itemImg: "/default-img.png", quantity: 1 });
 
         handleModal(newItemModal.current);
     }
@@ -78,7 +78,7 @@ export default function NewItem( props ) {
                     </label>
                 </div>
                 <div id="new-image">
-                    <img src={formInfo.itemImg == "" ? "/public/default-img.png" : formInfo.itemImg} className="img-new" />
+                    <img src={formInfo.itemImg == "" ? "/default-img.png" : formInfo.itemImg} className="img-new" />
                 </div>
                 <button className="submit-btn" >SUBMIT</button>
             </form>
