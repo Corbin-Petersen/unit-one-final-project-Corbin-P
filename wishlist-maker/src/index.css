@@ -270,7 +270,7 @@ img {
 }
 .img-new {
     max-width: 100%;
-    max-height: 40vh;
+    max-height: 100%;
 }
 
 
@@ -680,8 +680,8 @@ label {
 }
 
 #new-image {  
-    width: 100%;
-    height: 30vw;
+    min-width: 300px;
+    max-width: 475px;
     justify-content: center;
     display: flex;
 }
